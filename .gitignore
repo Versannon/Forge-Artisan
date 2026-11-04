@@ -1,0 +1,28 @@
+# Python cache and environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.env
+.env.*
+!.env.example
+venv/
+.venv/
+env/
+
+# Build artifacts & binary distributions
+build/
+dist/
+*.spec
+packaging/Y/
+*.exe
+*.dll
+
+# IDE and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Engine logs & local temp runs
+*.log
