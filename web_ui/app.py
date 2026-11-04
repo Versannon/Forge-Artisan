@@ -56,138 +56,173 @@ HTML_CONTENT = r"""<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&family=SF+Pro+Text:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
     :root {
-      --bg-base: #0c0d10;
-      --bg-surface: #14151b;
-      --bg-surface-elevated: #1b1d24;
-      --bg-well: #0e0f13;
-      --border-subtle: #232530;
-      --border-hover: #353846;
-      --accent-brass: #d97706;
-      --accent-brass-hover: #b45309;
-      --accent-brass-light: #f59e0b;
-      --accent-brass-subtle: rgba(217, 119, 6, 0.12);
-      --text-primary: #f8fafc;
-      --text-secondary: #94a3b8;
-      --text-tertiary: #64748b;
-      --status-emerald: #10b981;
-      --status-coral: #f87171;
+      /* iOS Deep Space Glass Aesthetics */
+      --bg-base: #000000;
+      --bg-surface: rgba(28, 28, 30, 0.72);
+      --bg-surface-elevated: rgba(44, 44, 46, 0.85);
+      --bg-input: rgba(118, 118, 128, 0.18);
+      --border-glass: rgba(255, 255, 255, 0.12);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-focus: rgba(10, 132, 255, 0.6);
+      
+      /* Apple System Colors & Vibrant Gradients */
+      --ios-blue: #0A84FF;
+      --ios-blue-rgb: 10, 132, 255;
+      --ios-purple: #BF5AF2;
+      --ios-indigo: #5E5CE6;
+      --ios-cyan: #64D2FF;
+      --ios-amber: #FF9F0A;
+      --ios-green: #30D158;
+      --ios-rose: #FF453A;
+      
+      --text-primary: #FFFFFF;
+      --text-secondary: rgba(235, 235, 245, 0.68);
+      --text-tertiary: rgba(235, 235, 245, 0.40);
     }
 
     body {
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background-color: var(--bg-base);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Plus Jakarta Sans", sans-serif;
+      background: radial-gradient(circle at 50% 0%, #151828 0%, #08090d 60%, #000000 100%);
+      background-attachment: fixed;
       color: var(--text-primary);
-      letter-spacing: -0.011em;
+      letter-spacing: -0.012em;
       -webkit-font-smoothing: antialiased;
     }
 
     h1, h2, h3, h4, .font-heading {
-      font-family: 'Space Grotesk', sans-serif;
-      letter-spacing: -0.02em;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Plus Jakarta Sans", sans-serif;
+      letter-spacing: -0.022em;
     }
 
     .font-mono {
-      font-family: 'Fira Code', monospace;
-      letter-spacing: -0.02em;
+      font-family: "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+      letter-spacing: -0.015em;
     }
 
-    /* Custom tactile scrollbar */
+    /* iOS Frosted Glass Capsule / Card Container */
+    .card-atelier, .ios-card {
+      background: var(--bg-surface);
+      backdrop-filter: blur(28px) saturate(190%);
+      -webkit-backdrop-filter: blur(28px) saturate(190%);
+      border: 1px solid var(--border-glass);
+      border-radius: 1.5rem; /* 24px continuous rounded corner */
+      box-shadow: 0 10px 36px 0 rgba(0, 0, 0, 0.45), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* iOS Segmented Vibrant Buttons */
+    .btn-brass, .ios-btn-primary {
+      background: linear-gradient(135deg, #0A84FF 0%, #5E5CE6 100%);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 1.125rem; /* 18px */
+      box-shadow: 0 4px 18px rgba(10, 132, 255, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+      font-weight: 600;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-brass:hover, .ios-btn-primary:hover {
+      background: linear-gradient(135deg, #2793FF 0%, #706EFF 100%);
+      box-shadow: 0 6px 24px rgba(10, 132, 255, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+      transform: scale(1.018);
+    }
+
+    .btn-brass:active, .ios-btn-primary:active {
+      transform: scale(0.97);
+      box-shadow: 0 2px 8px rgba(10, 132, 255, 0.3);
+    }
+
+    .btn-secondary, .ios-btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-primary);
+      border-radius: 1.125rem;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-secondary:hover, .ios-btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary:active, .ios-btn-secondary:active {
+      transform: scale(0.97);
+    }
+
+    /* iOS Segmented Pills */
+    .ios-pill {
+      border-radius: 9999px;
+      backdrop-filter: blur(12px);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Custom smooth scrollbar */
     ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
+      width: 5px;
+      height: 5px;
     }
     ::-webkit-scrollbar-track {
       background: transparent;
     }
     ::-webkit-scrollbar-thumb {
-      background: #232632;
-      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.18);
+      border-radius: 9999px;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: #373b4d;
-    }
-
-    /* Subtle hairline borders */
-    .border-atelier {
-      border: 1px solid var(--border-subtle);
-    }
-
-    .card-atelier {
-      background-color: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: 1rem;
-      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.45);
-    }
-
-    .btn-brass {
-      background: linear-gradient(180deg, #d97706 0%, #b45309 100%);
-      color: #fff;
-      border: 1px solid #f59e0b;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.18);
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .btn-brass:hover {
-      background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
-      border-color: #fbbf24;
-      box-shadow: 0 4px 12px rgba(217, 119, 6, 0.25);
-      transform: translateY(-1px);
-    }
-
-    .btn-secondary {
-      background-color: #191b22;
-      border: 1px solid var(--border-subtle);
-      color: var(--text-secondary);
-      transition: all 0.15s ease;
-    }
-    .btn-secondary:hover {
-      background-color: #21242d;
-      border-color: var(--border-hover);
-      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.32);
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col font-sans overflow-x-hidden selection:bg-amber-900/40 selection:text-amber-200">
+<body class="min-h-screen flex flex-col font-sans overflow-x-hidden selection:bg-blue-500/30 selection:text-white">
   
-  <!-- Header: Atelier Studio Top Navigation -->
-  <header class="border-b border-[#20222b] bg-[#0f1014]/90 backdrop-blur-xl px-6 py-3.5 flex items-center justify-between sticky top-0 z-50">
+  <!-- Header: iOS Glass Navigation Bar -->
+  <header class="border-b border-white/10 bg-black/60 backdrop-blur-2xl px-6 py-3.5 flex items-center justify-between sticky top-0 z-50">
     <div class="flex items-center space-x-3.5">
-      <!-- Minimalist Foundry Anvil Mark with Warm Ember Flare -->
-      <div class="w-9 h-9 rounded-xl bg-gradient-to-b from-[#222530] to-[#181920] border border-[#353948] flex items-center justify-center text-amber-500 font-bold text-sm shadow-md">
-        <svg class="w-4.5 h-4.5 fill-current text-amber-400" viewBox="0 0 24 24">
-          <path d="M4 4h16l-3 6h-3v4h4v3H6v-3h4v-4H7L4 4z"/>
-        </svg>
+      <!-- iOS App Icon Squircle -->
+      <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-600 p-[1px] shadow-lg shadow-blue-500/20">
+        <div class="w-full h-full bg-black/40 rounded-[15px] backdrop-blur-md flex items-center justify-center text-white font-bold text-sm">
+          <svg class="w-5 h-5 fill-current text-white drop-shadow-sm" viewBox="0 0 24 24">
+            <path d="M4 4h16l-3 6h-3v4h4v3H6v-3h4v-4H7L4 4z"/>
+          </svg>
+        </div>
       </div>
       <div>
-        <div class="flex items-center gap-2.5">
-          <h1 class="text-base font-bold tracking-tight text-slate-100 font-heading">ForgeArtisan</h1>
-          <span class="text-[10px] font-mono font-medium uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/30">Studio 2.0</span>
+        <div class="flex items-center gap-2">
+          <h1 class="text-base font-bold tracking-tight text-white font-heading">ForgeArtisan</h1>
+          <span class="text-[10px] font-medium uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-300 border border-blue-400/30">Studio 2.0</span>
         </div>
-        <p class="text-[11px] text-slate-400 font-normal">Autonomous 3D Technical Artist & Engine Copilot</p>
+        <p class="text-[11px] text-white/50 font-normal">Autonomous 3D Technical Artist & Engine Copilot</p>
       </div>
     </div>
     
-    <!-- Center / Right Engine Hub & System Controls -->
-    <div class="flex items-center space-x-3 text-xs">
+    <!-- Center / Right Engine Hub & System Controls (iOS Pills) -->
+    <div class="flex items-center space-x-2.5 text-xs">
       
       <!-- Dynamic Engine Connection Capsule -->
-      <div id="engine-capsule" onclick="toggleEngineDrawer()" class="flex items-center gap-2.5 px-3 py-1.5 rounded-lg border border-[#2b2e38] bg-[#1c1e24] cursor-pointer hover:border-zinc-500/50 transition shadow-sm">
-        <span class="w-2 h-2 rounded-full bg-zinc-500" id="engine-dot"></span>
-        <span id="engine-label" class="font-medium text-zinc-300">Scanning engines...</span>
-        <svg class="w-3.5 h-3.5 text-zinc-400 transition-transform" id="engine-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div id="engine-capsule" onclick="toggleEngineDrawer()" class="flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl cursor-pointer hover:bg-white/10 transition shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-white/40" id="engine-dot"></span>
+        <span id="engine-label" class="font-medium text-white/80">Scanning engines...</span>
+        <svg class="w-3.5 h-3.5 text-white/50 transition-transform" id="engine-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
         </svg>
       </div>
 
       <!-- API Key Capsule -->
-      <button onclick="openApiKeyModal()" id="api-key-badge" class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-[#2b2e38] bg-[#1c1e24] text-zinc-300 hover:border-zinc-500/50 transition">
-        <span class="w-2 h-2 rounded-full bg-emerald-400" id="api-dot"></span>
+      <button onclick="openApiKeyModal()" id="api-key-badge" class="flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl text-white/80 hover:bg-white/10 transition">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,199,89,0.6)]" id="api-dot"></span>
         <span id="api-key-text" class="font-medium">API: Active</span>
       </button>
 
-      <button onclick="refreshEngineStatus()" class="p-1.5 text-zinc-400 hover:text-zinc-200 bg-[#202229] border border-[#2d303b] rounded-lg transition" title="Refresh Engine Connection">
+      <button onclick="refreshEngineStatus()" class="p-2 text-white/60 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 rounded-full transition shadow-sm" title="Refresh Engine Connection">
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
         </svg>
@@ -196,17 +231,17 @@ HTML_CONTENT = r"""<!DOCTYPE html>
   </header>
 
   <!-- Expandable Detected Engine Hub Drawer -->
-  <div id="engine-drawer" class="hidden border-b border-[#292c36] bg-[#17181e] px-6 py-4 shadow-xl">
+  <div id="engine-drawer" class="hidden border-b border-white/10 bg-zinc-900/80 backdrop-blur-3xl px-6 py-5 shadow-2xl transition-all">
     <div class="max-w-7xl mx-auto">
-      <div class="flex items-center justify-between mb-3">
+      <div class="flex items-center justify-between mb-4">
         <div>
-          <h2 class="text-xs uppercase tracking-wider font-mono font-semibold text-zinc-300 flex items-center gap-2">
+          <h2 class="text-xs uppercase tracking-wider font-semibold text-white/90 flex items-center gap-2 font-heading">
             <span>Creation Tools & Engine Hub</span>
-            <span id="drawer-status-pill" class="text-[10px] px-2 py-0.5 rounded bg-zinc-800 text-zinc-400">Scanning</span>
+            <span id="drawer-status-pill" class="text-[10px] px-2.5 py-0.5 rounded-full bg-white/10 text-white/70">Scanning</span>
           </h2>
-          <p class="text-[11px] text-zinc-400 mt-0.5">ForgeArtisan auto-hooks into any running engine, or launches installed tools with your project.</p>
+          <p class="text-[11px] text-white/50 mt-0.5">ForgeArtisan auto-hooks into any active engine, or launches installed tools with your project.</p>
         </div>
-        <button onclick="toggleEngineDrawer()" class="text-zinc-400 hover:text-zinc-200 text-xs px-2 py-1">Close ✕</button>
+        <button onclick="toggleEngineDrawer()" class="text-white/50 hover:text-white text-xs px-3 py-1 rounded-full bg-white/5 border border-white/10">Close ✕</button>
       </div>
 
       <!-- Grid of Detected Installed Creation Apps -->
@@ -217,15 +252,15 @@ HTML_CONTENT = r"""<!DOCTYPE html>
   </div>
 
   <!-- Main Atelier Layout: Sessions Bar + Split Workspace -->
-  <div class="flex-1 flex flex-col max-w-7xl mx-auto w-full p-6 space-y-5">
+  <div class="flex-1 flex flex-col max-w-7xl mx-auto w-full p-6 space-y-6">
     
-    <!-- Top Horizontal Sessions Bar -->
-    <div class="flex items-center justify-between border-b border-[#252832] pb-3">
-      <div class="flex items-center gap-2 overflow-x-auto" id="sessions-tabs">
+    <!-- Top Horizontal Sessions Bar (iOS Segmented Header Style) -->
+    <div class="flex items-center justify-between border-b border-white/10 pb-4">
+      <div class="flex items-center gap-2 overflow-x-auto p-1 bg-white/5 rounded-2xl border border-white/5 backdrop-blur-md" id="sessions-tabs">
         <!-- Rendered via JS -->
       </div>
-      <button onclick="createNewSession()" class="text-xs px-3 py-1.5 rounded-lg btn-secondary flex items-center gap-1.5 shrink-0">
-        <span class="text-amber-400 font-bold">+</span>
+      <button onclick="createNewSession()" class="text-xs px-4 py-2 rounded-xl btn-secondary flex items-center gap-2 shrink-0 font-medium">
+        <span class="text-blue-400 font-bold text-sm">+</span>
         <span>New Craft Session</span>
       </button>
     </div>
@@ -234,37 +269,37 @@ HTML_CONTENT = r"""<!DOCTYPE html>
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
       
       <!-- Left Column: Input Box & Live Execution Timeline (7 cols) -->
-      <div class="lg:col-span-7 space-y-4">
+      <div class="lg:col-span-7 space-y-5">
         
-        <!-- Prompt & Craft Card -->
-        <div class="card-atelier p-5 space-y-4">
+        <!-- Prompt & Craft Card (iOS Glass Panel) -->
+        <div class="card-atelier p-6 space-y-4">
           <div class="flex items-center justify-between">
-            <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 font-heading">
+            <label class="block text-xs font-semibold uppercase tracking-wider text-white/90 font-heading">
               3D Craft Directive
             </label>
-            <span id="session-title-indicator" class="text-[11px] text-slate-400 font-mono">Session: Steam Locomotive</span>
+            <span id="session-title-indicator" class="text-[11px] text-white/50 font-mono">Session: Steam Locomotive</span>
           </div>
 
           <div class="relative">
-            <textarea id="prompt-input" rows="3" class="w-full bg-[#0d0e12] border border-[#232632] rounded-xl p-3.5 text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-amber-500/70 focus:ring-1 focus:ring-amber-500/20 transition resize-none leading-relaxed font-sans" placeholder="Describe the 3D model, mechanical proportions, and PBR finish... Tip: specify 'in blender' or '.fbx' to target Blender directly."></textarea>
+            <textarea id="prompt-input" rows="3" class="w-full bg-white/[0.06] border border-white/10 rounded-2xl p-4 text-xs text-white placeholder-white/40 focus:outline-none focus:border-blue-500/70 focus:ring-2 focus:ring-blue-500/30 transition resize-none leading-relaxed font-sans" placeholder="Describe the 3D model, mechanical proportions, and PBR finish... Tip: specify 'in blender' or '.fbx' to target Blender directly."></textarea>
           </div>
 
           <!-- Dynamic Target Engine Context Indicator -->
-          <div id="target-engine-indicator" class="flex items-center gap-1.5 text-[11px] text-slate-400 font-mono py-0.5">
-            <span class="text-slate-500">Target Engine:</span>
+          <div id="target-engine-indicator" class="flex items-center gap-1.5 text-[11px] text-white/60 font-mono py-0.5">
+            <span class="text-white/40">Target Engine:</span>
             <span class="text-emerald-400 font-medium">🟢 Unity 6 (test project)</span>
           </div>
 
           <!-- Inspiration Tags & Craft Button -->
-          <div class="flex items-center justify-between pt-1">
-            <div class="flex gap-1.5 flex-wrap">
-              <button onclick="setPrompt('vintage 4-4-0 American steam locomotive with beveled cab, brass steam bell, and cowcatcher wedge')" class="text-[11px] px-2.5 py-1 rounded-lg bg-[#191b22] hover:bg-[#222530] text-slate-300 border border-[#272a36] hover:border-slate-600 transition">🚂 4-4-0 Train</button>
-              <button onclick="setPrompt('A military-grade sci-fi power crate with reinforced beveled composite armor plating, recessed rubberized sealing ribs, side grab handles, and an emissive cyan status strip glowing along the front latch.')" class="text-[11px] px-2.5 py-1 rounded-lg bg-[#191b22] hover:bg-[#222530] text-slate-300 border border-[#272a36] hover:border-slate-600 transition">📦 Sci-Fi Crate</button>
-              <button onclick="setPrompt('heavy industrial railway track switch turnout mechanism with control lever')" class="text-[11px] px-2.5 py-1 rounded-lg bg-[#191b22] hover:bg-[#222530] text-slate-300 border border-[#272a36] hover:border-slate-600 transition">🛤️ Rail Switch</button>
-              <button onclick="setPrompt('medieval timber and stone blacksmith forge with stone chimney and beveled anvil')" class="text-[11px] px-2.5 py-1 rounded-lg bg-[#191b22] hover:bg-[#222530] text-slate-300 border border-[#272a36] hover:border-slate-600 transition">🏰 Stone Forge</button>
+          <div class="flex items-center justify-between pt-1 gap-2">
+            <div class="flex gap-2 flex-wrap">
+              <button onclick="setPrompt('vintage 4-4-0 American steam locomotive with beveled cab, brass steam bell, and cowcatcher wedge')" class="text-[11px] px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-white/80 border border-white/10 transition">🚂 4-4-0 Train</button>
+              <button onclick="setPrompt('A military-grade sci-fi power crate with reinforced beveled composite armor plating, recessed rubberized sealing ribs, side grab handles, and an emissive cyan status strip glowing along the front latch.')" class="text-[11px] px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-white/80 border border-white/10 transition">📦 Sci-Fi Crate</button>
+              <button onclick="setPrompt('heavy industrial railway track switch turnout mechanism with control lever')" class="text-[11px] px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-white/80 border border-white/10 transition">🛤️ Rail Switch</button>
+              <button onclick="setPrompt('medieval timber and stone blacksmith forge with stone chimney and beveled anvil')" class="text-[11px] px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-white/80 border border-white/10 transition">🏰 Stone Forge</button>
             </div>
             
-            <button id="build-btn" onclick="triggerBuild()" class="btn-brass px-5 py-2.5 rounded-xl text-xs font-bold tracking-wide flex items-center gap-2 font-heading">
+            <button id="build-btn" onclick="triggerBuild()" class="btn-brass px-6 py-2.5 rounded-2xl text-xs font-semibold tracking-wide flex items-center gap-2 shrink-0">
               <span>Craft & Re-iterate</span>
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
@@ -274,19 +309,19 @@ HTML_CONTENT = r"""<!DOCTYPE html>
         </div>
 
         <!-- Live Agentic Execution Stream -->
-        <div class="card-atelier p-5 flex flex-col min-h-[460px]">
-          <div class="flex items-center justify-between border-b border-[#232632] pb-3 mb-3">
+        <div class="card-atelier p-6 flex flex-col min-h-[460px]">
+          <div class="flex items-center justify-between border-b border-white/10 pb-3.5 mb-3.5">
             <div class="flex items-center gap-2">
-              <h2 class="text-xs font-bold uppercase tracking-wider text-slate-300 font-heading">
+              <h2 class="text-xs font-semibold uppercase tracking-wider text-white/90 font-heading">
                 Agent Execution Pipeline
               </h2>
-              <span id="turn-counter" class="text-[10px] bg-[#1a1c24] text-slate-300 px-2.5 py-0.5 rounded-full border border-[#2f3342] font-mono">Turn 0</span>
+              <span id="turn-counter" class="text-[10px] bg-white/10 text-white/80 px-2.5 py-0.5 rounded-full border border-white/10 font-mono">Turn 0</span>
             </div>
-            <span id="status-tag" class="text-[11px] px-2.5 py-0.5 rounded-full bg-[#191b22] text-slate-400 font-mono border border-[#262936]">Idle</span>
+            <span id="status-tag" class="text-[11px] px-3 py-0.5 rounded-full bg-white/10 text-white/60 font-mono border border-white/10">Idle</span>
           </div>
 
-          <div id="timeline" class="space-y-2.5 overflow-y-auto flex-1 pr-1 text-xs">
-            <div class="text-slate-500 italic p-6 text-center text-xs">
+          <div id="timeline" class="space-y-3 overflow-y-auto flex-1 pr-1 text-xs">
+            <div class="text-white/40 italic p-6 text-center text-xs">
               Awaiting prompt execution. ForgeArtisan scours blueprints, checks engine state, runs multi-angle screenshot critique, detects flaws, and self-corrects until verified perfect.
             </div>
           </div>
@@ -294,126 +329,126 @@ HTML_CONTENT = r"""<!DOCTYPE html>
       </div>
 
       <!-- Right Column: Viewport Snapshot Inspector & Technical QA Audit (5 cols) -->
-      <div class="lg:col-span-5 space-y-4">
+      <div class="lg:col-span-5 space-y-5">
         
         <!-- Viewport Snapshot Inspector Card -->
-        <div class="card-atelier p-4 flex flex-col">
-          <div class="flex items-center justify-between mb-3">
+        <div class="card-atelier p-5 flex flex-col">
+          <div class="flex items-center justify-between mb-3.5">
             <div>
-              <h2 class="text-xs font-bold uppercase tracking-wider text-slate-300 font-heading">
+              <h2 class="text-xs font-semibold uppercase tracking-wider text-white/90 font-heading">
                 Viewport Snapshot Inspector
               </h2>
-              <p class="text-[11px] text-slate-400">Multi-angle engine captures with closed-loop flaw detection</p>
+              <p class="text-[11px] text-white/50">Multi-angle engine captures with closed-loop flaw detection</p>
             </div>
             
-            <button onclick="togglePass()" id="toggle-pass-btn" class="text-[11px] px-2.5 py-1 rounded-lg btn-secondary flex items-center gap-1.5" title="Flip between Draft Flaws and Perfected Model">
+            <button onclick="togglePass()" id="toggle-pass-btn" class="text-[11px] px-3 py-1.5 rounded-xl btn-secondary flex items-center gap-1.5" title="Flip between Draft Flaws and Perfected Model">
               <span>⇄</span> <span>Toggle Fix</span>
             </button>
           </div>
 
-          <!-- Iteration Pass Segmented Switcher -->
-          <div class="grid grid-cols-2 gap-2 mb-3 bg-[#0d0e12] p-1.5 rounded-xl border border-[#232632] text-xs">
-            <button id="pass1-btn" onclick="selectPass(1)" class="py-1.5 px-2 rounded-lg font-medium text-center transition flex items-center justify-center gap-2 text-slate-400 hover:text-slate-200">
-              <span class="w-2 h-2 rounded-full bg-rose-400"></span>
+          <!-- Iteration Pass Segmented Switcher (iOS Segmented Control) -->
+          <div class="grid grid-cols-2 gap-1.5 mb-3.5 bg-black/40 p-1.5 rounded-2xl border border-white/10 text-xs">
+            <button id="pass1-btn" onclick="selectPass(1)" class="py-2 px-3 rounded-xl font-medium text-center transition flex items-center justify-center gap-2 text-white/60 hover:text-white">
+              <span class="w-2 h-2 rounded-full bg-rose-500 shadow-[0_0_8px_rgba(255,69,58,0.6)]"></span>
               <span>Pass 1: Flaws (71.4%)</span>
             </button>
-            <button id="pass2-btn" onclick="selectPass(2)" class="py-1.5 px-2 rounded-lg font-medium text-center transition flex items-center justify-center gap-2 bg-[#1b2721] text-emerald-300 border border-emerald-800/40 shadow-sm">
-              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <button id="pass2-btn" onclick="selectPass(2)" class="py-2 px-3 rounded-xl font-medium text-center transition flex items-center justify-center gap-2 bg-white/15 text-white border border-white/15 shadow-sm">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,199,89,0.6)]"></span>
               <span>Pass 2: Perfected (96.8%)</span>
             </button>
           </div>
 
           <!-- Canonical Angle Selector Tabs -->
-          <div class="flex items-center gap-1.5 mb-3 overflow-x-auto pb-1 text-[11px] font-medium" id="angle-tabs">
-            <button onclick="selectAngle('perspective')" id="tab-perspective" class="px-3 py-1.5 rounded-lg bg-[#252834] text-slate-100 border border-[#383c4d] shadow-sm transition shrink-0">
+          <div class="flex items-center gap-1.5 mb-3.5 overflow-x-auto pb-1 text-[11px] font-medium" id="angle-tabs">
+            <button onclick="selectAngle('perspective')" id="tab-perspective" class="px-3.5 py-1.5 rounded-xl bg-white/20 text-white border border-white/20 shadow-sm transition shrink-0">
               Perspective 3/4
             </button>
-            <button onclick="selectAngle('front')" id="tab-front" class="px-3 py-1.5 rounded-lg bg-[#14161c] text-slate-400 hover:text-slate-200 border border-transparent transition shrink-0">
+            <button onclick="selectAngle('front')" id="tab-front" class="px-3.5 py-1.5 rounded-xl bg-white/5 text-white/60 hover:text-white border border-transparent transition shrink-0">
               Front Elevation
             </button>
-            <button onclick="selectAngle('side')" id="tab-side" class="px-3 py-1.5 rounded-lg bg-[#14161c] text-slate-400 hover:text-slate-200 border border-transparent transition shrink-0">
+            <button onclick="selectAngle('side')" id="tab-side" class="px-3.5 py-1.5 rounded-xl bg-white/5 text-white/60 hover:text-white border border-transparent transition shrink-0">
               Side Profile
             </button>
-            <button onclick="selectAngle('top')" id="tab-top" class="px-3 py-1.5 rounded-lg bg-[#14161c] text-slate-400 hover:text-slate-200 border border-transparent transition shrink-0">
+            <button onclick="selectAngle('top')" id="tab-top" class="px-3.5 py-1.5 rounded-xl bg-white/5 text-white/60 hover:text-white border border-transparent transition shrink-0">
               Top Symmetry
             </button>
           </div>
 
           <!-- High-Res Snapshot Viewport Display Box -->
-          <div id="snapshot-container" class="w-full aspect-[4/3] bg-[#0b0c0f] rounded-xl border border-[#232632] relative overflow-hidden flex items-center justify-center shadow-inner">
+          <div id="snapshot-container" class="w-full aspect-[4/3] bg-black/60 rounded-2xl border border-white/10 relative overflow-hidden flex items-center justify-center shadow-inner">
             <img id="snapshot-image" src="" alt="Viewport Snapshot" class="w-full h-full object-contain hidden" />
             
-            <div id="snapshot-placeholder" class="text-xs text-slate-500 italic text-center p-6 space-y-2">
-              <div class="text-2xl text-slate-600">📷</div>
-              <p class="font-medium text-slate-300 font-heading">Awaiting Viewport Snapshot Stream</p>
-              <p class="text-[11px] text-slate-500 max-w-xs mx-auto">ForgeArtisan captures 4 canonical angles, detects structural flaws, and autonomously re-iterates until verified perfect.</p>
+            <div id="snapshot-placeholder" class="text-xs text-white/40 italic text-center p-6 space-y-2">
+              <div class="text-3xl text-white/20">📷</div>
+              <p class="font-medium text-white/70 font-heading">Awaiting Viewport Snapshot Stream</p>
+              <p class="text-[11px] text-white/40 max-w-xs mx-auto">ForgeArtisan captures 4 canonical angles, detects structural flaws, and autonomously re-iterates until verified perfect.</p>
             </div>
 
             <!-- Precision Camera Telemetry HUD Badge -->
-            <div id="snapshot-badge" class="absolute bottom-2.5 right-2.5 px-2.5 py-1 rounded bg-[#14161c]/90 backdrop-blur border border-[#2c303f] text-[10px] text-slate-300 font-mono hidden">
+            <div id="snapshot-badge" class="absolute bottom-3 right-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-xl border border-white/15 text-[10px] text-white/80 font-mono hidden">
               50MM • CANONICAL ORTHO
             </div>
           </div>
         </div>
 
         <!-- Technical QA Audit & Closed-Loop Critic Panel -->
-        <div class="card-atelier p-4">
-          <div class="flex items-center justify-between mb-2.5">
-            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-300 font-heading">
+        <div class="card-atelier p-5">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="text-xs font-semibold uppercase tracking-wider text-white/90 font-heading">
               SAM 3.1 Closed-Loop QA Audit
             </h2>
-            <span id="critic-status-badge" class="text-[11px] px-2.5 py-0.5 rounded-full bg-emerald-950/60 text-emerald-300 border border-emerald-800/40 font-mono font-medium">
+            <span id="critic-status-badge" class="text-[11px] px-3 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-mono font-medium">
               Verified Perfect (96.8%)
             </span>
           </div>
 
           <div id="flaw-panel-content" class="space-y-2 text-xs">
-            <div class="p-3 bg-[#0d0e12] rounded-xl border border-[#232632] text-slate-500 italic text-center">
+            <div class="p-3.5 bg-white/[0.04] rounded-2xl border border-white/5 text-white/40 italic text-center">
               Execute a craft run to inspect screenshot defects and automated corrections.
             </div>
           </div>
         </div>
 
         <!-- Asset Structure Hierarchy Card -->
-        <div class="card-atelier p-4 flex-1 flex flex-col">
-          <div class="flex items-center justify-between mb-2.5">
-            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-300 font-heading">
+        <div class="card-atelier p-5 flex-1 flex flex-col">
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="text-xs font-semibold uppercase tracking-wider text-white/90 font-heading">
               Compound Assembly Manifest
             </h2>
-            <span id="parts-count" class="text-[11px] text-zinc-400 font-mono">11 components</span>
+            <span id="parts-count" class="text-[11px] text-white/50 font-mono">11 components</span>
           </div>
           <div id="manifest-content" class="space-y-2 flex-1 overflow-y-auto pr-1 text-xs">
-            <div class="text-zinc-500 italic text-center p-3">Submit a prompt to craft.</div>
+            <div class="text-white/40 italic text-center p-3">Submit a prompt to craft.</div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- API Key Modal -->
-  <div id="api-key-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center hidden">
-    <div class="card-atelier p-6 max-w-md w-full mx-4 shadow-2xl space-y-4">
+  <!-- API Key Modal (iOS Sheet Style) -->
+  <div id="api-key-modal" class="fixed inset-0 bg-black/75 backdrop-blur-2xl z-50 flex items-center justify-center hidden">
+    <div class="card-atelier p-7 max-w-md w-full mx-4 shadow-2xl space-y-5 border border-white/15">
       <div class="flex items-center justify-between">
-        <h3 class="text-sm font-bold text-zinc-100 flex items-center gap-2">
+        <h3 class="text-sm font-bold text-white flex items-center gap-2 font-heading">
           <span>Meta Model API Key</span>
         </h3>
-        <button onclick="closeApiKeyModal()" class="text-zinc-400 hover:text-zinc-200">✕</button>
+        <button onclick="closeApiKeyModal()" class="text-white/50 hover:text-white p-1 rounded-full bg-white/5">✕</button>
       </div>
-      <p class="text-xs text-zinc-400 leading-relaxed">
+      <p class="text-xs text-white/60 leading-relaxed">
         Enter your Meta Model API key to power <b>Muse Spark 1.3</b> and <b>SAM 3.1</b> visual inspection.
       </p>
-      <div class="space-y-3">
+      <div class="space-y-3.5">
         <div>
-          <label class="block text-[10px] font-mono uppercase text-zinc-400 mb-1">MODEL_API_KEY</label>
+          <label class="block text-[10px] font-mono uppercase text-white/50 mb-1">MODEL_API_KEY</label>
           <div class="relative">
-            <input type="password" id="modal-key-input" placeholder="Paste your Meta Model API key here" class="w-full bg-[#131418] border border-[#2b2e38] rounded-lg px-3.5 py-2 text-xs text-zinc-100 focus:outline-none focus:border-amber-500 font-mono" />
-            <button onclick="toggleKeyVisibility()" class="absolute right-3 top-2 text-zinc-400 hover:text-zinc-200 text-xs">👁</button>
+            <input type="password" id="modal-key-input" placeholder="Paste your Meta Model API key here" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white placeholder-white/30 focus:outline-none focus:border-blue-500 font-mono" />
+            <button onclick="toggleKeyVisibility()" class="absolute right-3.5 top-2.5 text-white/50 hover:text-white text-xs">👁</button>
           </div>
         </div>
-        <div id="modal-status" class="text-xs text-zinc-400 hidden"></div>
-        <div class="flex items-center justify-end gap-2 pt-2">
-          <button onclick="closeApiKeyModal()" class="btn-secondary px-3.5 py-1.5 rounded-lg text-xs">Cancel</button>
-          <button onclick="saveApiKey()" class="btn-brass px-4 py-1.5 rounded-lg text-xs font-medium">Save Key</button>
+        <div id="modal-status" class="text-xs text-white/60 hidden"></div>
+        <div class="flex items-center justify-end gap-2.5 pt-2">
+          <button onclick="closeApiKeyModal()" class="btn-secondary px-4 py-2 rounded-xl text-xs">Cancel</button>
+          <button onclick="saveApiKey()" class="btn-brass px-5 py-2 rounded-xl text-xs font-semibold">Save Key</button>
         </div>
       </div>
     </div>
@@ -630,7 +665,7 @@ HTML_CONTENT = r"""<!DOCTYPE html>
       }
 
       if (currentPass === 1) {
-        statusBadge.className = 'text-[11px] px-2.5 py-0.5 rounded bg-rose-950/60 text-rose-300 border border-rose-800/40 font-mono font-medium';
+        statusBadge.className = 'text-[11px] px-3 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30 font-mono font-medium';
         const score = (activeSessionData.pass1_critique && activeSessionData.pass1_critique.score) || 71.4;
         const defects = (activeSessionData.pass1_critique && activeSessionData.pass1_critique.defects) || [
           "Broken Structure: Sharp 90° un-beveled edges detected.",
@@ -643,26 +678,26 @@ HTML_CONTENT = r"""<!DOCTYPE html>
           const parts = d.split(':');
           const title = parts[0];
           const desc = parts.slice(1).join(':');
-          return `<div class="p-1.5 bg-[#1a1c22] rounded border border-rose-900/30">
+          return `<div class="p-2 bg-white/5 rounded-xl border border-rose-500/20">
             <span class="text-rose-400 font-semibold">• ${title}:</span>${desc}
           </div>`;
         }).join('');
 
         container.innerHTML = `
-          <div class="p-3 bg-[#171418] border border-rose-900/30 rounded-xl space-y-2">
-            <div class="font-bold text-rose-300 flex items-center gap-1.5">
+          <div class="p-4 bg-rose-950/20 border border-rose-500/20 rounded-2xl space-y-2.5">
+            <div class="font-bold text-rose-300 flex items-center gap-1.5 font-heading">
               <span>⚠️ ${defects.length} Structural Defects Encountered</span>
             </div>
-            <div class="space-y-1.5 text-[11px] text-zinc-300">
+            <div class="space-y-1.5 text-[11px] text-white/80">
               ${defectsHtml}
             </div>
-            <div class="text-[10px] text-amber-300/80 pt-1 border-t border-rose-900/30 flex items-center gap-1 font-mono">
+            <div class="text-[10px] text-amber-300/90 pt-1.5 border-t border-rose-500/20 flex items-center gap-1 font-mono">
               <span>⚡</span> <span>Action: Modeler triggered automated re-iteration pass with bevel chamfers.</span>
             </div>
           </div>
         `;
       } else {
-        statusBadge.className = 'text-[11px] px-2.5 py-0.5 rounded bg-emerald-950/60 text-emerald-300 border border-emerald-800/40 font-mono font-medium';
+        statusBadge.className = 'text-[11px] px-3 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-mono font-medium';
         const score = (activeSessionData.pass2_critique && activeSessionData.pass2_critique.score) || 96.8;
         const strengths = (activeSessionData.pass2_critique && activeSessionData.pass2_critique.strengths) || [
           "Verified: Procedural bevel chamfers applied across all macro and meso volumes.",
@@ -675,20 +710,20 @@ HTML_CONTENT = r"""<!DOCTYPE html>
           const parts = s.split(':');
           const title = parts[0];
           const desc = parts.slice(1).join(':');
-          return `<div class="p-1.5 bg-[#1a1c22] rounded border border-emerald-900/30">
+          return `<div class="p-2 bg-white/5 rounded-xl border border-emerald-500/20">
             <span class="text-emerald-400 font-semibold">${title}:</span>${desc}
           </div>`;
         }).join('');
 
         container.innerHTML = `
-          <div class="p-3 bg-[#131b17] border border-emerald-900/30 rounded-xl space-y-2">
-            <div class="font-bold text-emerald-300 flex items-center gap-1.5">
+          <div class="p-4 bg-emerald-950/20 border border-emerald-500/20 rounded-2xl space-y-2.5">
+            <div class="font-bold text-emerald-300 flex items-center gap-1.5 font-heading">
               <span>✓ Autonomous Self-Correction Verified</span>
             </div>
-            <div class="space-y-1.5 text-[11px] text-zinc-300">
+            <div class="space-y-1.5 text-[11px] text-white/80">
               ${strengthsHtml}
             </div>
-            <div class="text-[10px] text-emerald-300/80 pt-1 border-t border-emerald-900/30 flex items-center gap-1 font-mono">
+            <div class="text-[10px] text-emerald-300/90 pt-1.5 border-t border-emerald-500/20 flex items-center gap-1 font-mono">
               <span>✨</span> <span>Audit: All 4 canonical angles verified against real-world blueprints. 0 defects remain.</span>
             </div>
           </div>
@@ -706,11 +741,11 @@ HTML_CONTENT = r"""<!DOCTYPE html>
         list.forEach(s => {
           const isActive = s.id === currentSessionId;
           const btn = document.createElement('button');
-          btn.className = 'px-3 py-1.5 rounded-lg text-xs font-medium transition flex items-center gap-2 shrink-0 ' + 
-            (isActive ? 'bg-[#262832] text-zinc-100 border border-[#393d4c] shadow-sm' : 'btn-secondary text-zinc-400');
+          btn.className = 'px-3.5 py-1.5 rounded-xl text-xs font-medium transition flex items-center gap-2 shrink-0 ' + 
+            (isActive ? 'bg-white/20 text-white border border-white/25 shadow-md backdrop-blur-md' : 'bg-transparent text-white/60 hover:text-white hover:bg-white/5');
           btn.innerHTML = `
             <span onclick="switchSession('${s.id}')">${s.title}</span>
-            <span onclick="deleteSession(event, '${s.id}')" class="text-zinc-500 hover:text-rose-400 text-[10px]">✕</span>
+            <span onclick="deleteSession(event, '${s.id}')" class="text-white/30 hover:text-rose-400 text-[10px] ml-0.5">✕</span>
           `;
           container.appendChild(btn);
         });
