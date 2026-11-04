@@ -187,20 +187,21 @@ HTML_CONTENT = r"""<!DOCTYPE html>
   <!-- Header: iOS Glass Navigation Bar -->
   <header class="border-b border-white/10 bg-black/60 backdrop-blur-2xl px-6 py-3.5 flex items-center justify-between sticky top-0 z-50">
     <div class="flex items-center space-x-3.5">
-      <!-- iOS App Icon Squircle -->
-      <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-600 p-[1px] shadow-lg shadow-blue-500/20">
-        <div class="w-full h-full bg-black/40 rounded-[15px] backdrop-blur-md flex items-center justify-center text-white font-bold text-sm">
-          <svg class="w-5 h-5 fill-current text-white drop-shadow-sm" viewBox="0 0 24 24">
-            <path d="M4 4h16l-3 6h-3v4h4v3H6v-3h4v-4H7L4 4z"/>
-          </svg>
-        </div>
+      <!-- iOS Light & Subtle Gradient Glass Squircle Logo -->
+      <div class="w-10 h-10 rounded-2xl bg-gradient-to-b from-white/90 via-slate-100/70 to-slate-200/50 p-[1px] shadow-lg shadow-white/10 ring-1 ring-white/30 backdrop-blur-md flex items-center justify-center relative overflow-hidden group">
+        <!-- Soft pearl subtle inner radial gradient sheen -->
+        <div class="absolute inset-0 bg-gradient-to-tr from-sky-100/40 via-white/80 to-indigo-100/30"></div>
+        <!-- Modern minimalist 3D isometric gemstone / artisan chisel icon -->
+        <svg class="w-5 h-5 text-slate-800 relative z-10 drop-shadow-sm transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
       </div>
       <div>
         <div class="flex items-center gap-2">
           <h1 class="text-base font-bold tracking-tight text-white font-heading">ForgeArtisan</h1>
-          <span class="text-[10px] font-medium uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-300 border border-blue-400/30">Studio 2.0</span>
+          <span class="text-[10px] font-medium tracking-wide px-2.5 py-0.5 rounded-full bg-white/10 text-white/90 border border-white/15">Studio 2.0</span>
         </div>
-        <p class="text-[11px] text-white/50 font-normal">Autonomous 3D Technical Artist & Engine Copilot</p>
+        <p class="text-[11px] text-white/60 font-normal">Your automated 3D technical artist & engine companion</p>
       </div>
     </div>
     
@@ -274,33 +275,33 @@ HTML_CONTENT = r"""<!DOCTYPE html>
         <!-- Prompt & Craft Card (iOS Glass Panel) -->
         <div class="card-atelier p-6 space-y-4">
           <div class="flex items-center justify-between">
-            <label class="block text-xs font-semibold uppercase tracking-wider text-white/90 font-heading">
-              3D Craft Directive
+            <label class="block text-xs font-semibold text-white/90 font-heading">
+              What would you like to build?
             </label>
-            <span id="session-title-indicator" class="text-[11px] text-white/50 font-mono">Session: Steam Locomotive</span>
+            <span id="session-title-indicator" class="text-[11px] text-white/50 font-mono">Working on: Steam Locomotive</span>
           </div>
 
           <div class="relative">
-            <textarea id="prompt-input" rows="3" class="w-full bg-white/[0.06] border border-white/10 rounded-2xl p-4 text-xs text-white placeholder-white/40 focus:outline-none focus:border-blue-500/70 focus:ring-2 focus:ring-blue-500/30 transition resize-none leading-relaxed font-sans" placeholder="Describe the 3D model, mechanical proportions, and PBR finish... Tip: specify 'in blender' or '.fbx' to target Blender directly."></textarea>
+            <textarea id="prompt-input" rows="3" class="w-full bg-white/[0.06] border border-white/10 rounded-2xl p-4 text-xs text-white placeholder-white/40 focus:outline-none focus:border-blue-500/70 focus:ring-2 focus:ring-blue-500/30 transition resize-none leading-relaxed font-sans" placeholder="Describe the object, parts, and materials you have in mind... (e.g. 'A weathered pirate treasure chest with gold hinges' or add 'in Blender' if you'd like an FBX model)"></textarea>
           </div>
 
           <!-- Dynamic Target Engine Context Indicator -->
           <div id="target-engine-indicator" class="flex items-center gap-1.5 text-[11px] text-white/60 font-mono py-0.5">
-            <span class="text-white/40">Target Engine:</span>
+            <span class="text-white/40">Sending model to:</span>
             <span class="text-emerald-400 font-medium">🟢 Unity 6 (test project)</span>
           </div>
 
           <!-- Inspiration Tags & Craft Button -->
           <div class="flex items-center justify-between pt-1 gap-2">
             <div class="flex gap-2 flex-wrap">
-              <button onclick="setPrompt('vintage 4-4-0 American steam locomotive with beveled cab, brass steam bell, and cowcatcher wedge')" class="text-[11px] px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-white/80 border border-white/10 transition">🚂 4-4-0 Train</button>
+              <button onclick="setPrompt('vintage 4-4-0 American steam locomotive with beveled cab, brass steam bell, and cowcatcher wedge')" class="text-[11px] px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-white/80 border border-white/10 transition">🚂 Steam Train</button>
               <button onclick="setPrompt('A military-grade sci-fi power crate with reinforced beveled composite armor plating, recessed rubberized sealing ribs, side grab handles, and an emissive cyan status strip glowing along the front latch.')" class="text-[11px] px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-white/80 border border-white/10 transition">📦 Sci-Fi Crate</button>
               <button onclick="setPrompt('heavy industrial railway track switch turnout mechanism with control lever')" class="text-[11px] px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-white/80 border border-white/10 transition">🛤️ Rail Switch</button>
-              <button onclick="setPrompt('medieval timber and stone blacksmith forge with stone chimney and beveled anvil')" class="text-[11px] px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-white/80 border border-white/10 transition">🏰 Stone Forge</button>
+              <button onclick="setPrompt('medieval timber and stone blacksmith forge with stone chimney and beveled anvil')" class="text-[11px] px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 text-white/80 border border-white/10 transition">🏰 Blacksmith Forge</button>
             </div>
             
             <button id="build-btn" onclick="triggerBuild()" class="btn-brass px-6 py-2.5 rounded-2xl text-xs font-semibold tracking-wide flex items-center gap-2 shrink-0">
-              <span>Craft & Re-iterate</span>
+              <span>Create & Refine</span>
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
               </svg>
@@ -312,17 +313,17 @@ HTML_CONTENT = r"""<!DOCTYPE html>
         <div class="card-atelier p-6 flex flex-col min-h-[460px]">
           <div class="flex items-center justify-between border-b border-white/10 pb-3.5 mb-3.5">
             <div class="flex items-center gap-2">
-              <h2 class="text-xs font-semibold uppercase tracking-wider text-white/90 font-heading">
-                Agent Execution Pipeline
+              <h2 class="text-xs font-semibold text-white/90 font-heading">
+                Step-by-Step Progress
               </h2>
-              <span id="turn-counter" class="text-[10px] bg-white/10 text-white/80 px-2.5 py-0.5 rounded-full border border-white/10 font-mono">Turn 0</span>
+              <span id="turn-counter" class="text-[10px] bg-white/10 text-white/80 px-2.5 py-0.5 rounded-full border border-white/10 font-mono">Step 0</span>
             </div>
-            <span id="status-tag" class="text-[11px] px-3 py-0.5 rounded-full bg-white/10 text-white/60 font-mono border border-white/10">Idle</span>
+            <span id="status-tag" class="text-[11px] px-3 py-0.5 rounded-full bg-white/10 text-white/60 font-mono border border-white/10">Ready</span>
           </div>
 
           <div id="timeline" class="space-y-3 overflow-y-auto flex-1 pr-1 text-xs">
             <div class="text-white/40 italic p-6 text-center text-xs">
-              Awaiting prompt execution. ForgeArtisan scours blueprints, checks engine state, runs multi-angle screenshot critique, detects flaws, and self-corrects until verified perfect.
+              Waiting to start. Tell me what you'd like to build, and I'll look up references, place the pieces inside your engine, inspect the shape from four angles, and fix any flaws automatically.
             </div>
           </div>
         </div>
@@ -335,14 +336,14 @@ HTML_CONTENT = r"""<!DOCTYPE html>
         <div class="card-atelier p-5 flex flex-col">
           <div class="flex items-center justify-between mb-3.5">
             <div>
-              <h2 class="text-xs font-semibold uppercase tracking-wider text-white/90 font-heading">
-                Viewport Snapshot Inspector
+              <h2 class="text-xs font-semibold text-white/90 font-heading">
+                Camera Snapshots
               </h2>
-              <p class="text-[11px] text-white/50">Multi-angle engine captures with closed-loop flaw detection</p>
+              <p class="text-[11px] text-white/50">Multi-angle photos taken directly from your 3D viewport</p>
             </div>
             
             <button onclick="togglePass()" id="toggle-pass-btn" class="text-[11px] px-3 py-1.5 rounded-xl btn-secondary flex items-center gap-1.5" title="Flip between Draft Flaws and Perfected Model">
-              <span>⇄</span> <span>Toggle Fix</span>
+              <span>⇄</span> <span>Compare Draft & Fixed</span>
             </button>
           </div>
 
@@ -350,27 +351,27 @@ HTML_CONTENT = r"""<!DOCTYPE html>
           <div class="grid grid-cols-2 gap-1.5 mb-3.5 bg-black/40 p-1.5 rounded-2xl border border-white/10 text-xs">
             <button id="pass1-btn" onclick="selectPass(1)" class="py-2 px-3 rounded-xl font-medium text-center transition flex items-center justify-center gap-2 text-white/60 hover:text-white">
               <span class="w-2 h-2 rounded-full bg-rose-500 shadow-[0_0_8px_rgba(255,69,58,0.6)]"></span>
-              <span>Pass 1: Flaws (71.4%)</span>
+              <span>First Draft (Needs Work)</span>
             </button>
             <button id="pass2-btn" onclick="selectPass(2)" class="py-2 px-3 rounded-xl font-medium text-center transition flex items-center justify-center gap-2 bg-white/15 text-white border border-white/15 shadow-sm">
               <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,199,89,0.6)]"></span>
-              <span>Pass 2: Perfected (96.8%)</span>
+              <span>Final Polish (97% Match)</span>
             </button>
           </div>
 
           <!-- Canonical Angle Selector Tabs -->
           <div class="flex items-center gap-1.5 mb-3.5 overflow-x-auto pb-1 text-[11px] font-medium" id="angle-tabs">
             <button onclick="selectAngle('perspective')" id="tab-perspective" class="px-3.5 py-1.5 rounded-xl bg-white/20 text-white border border-white/20 shadow-sm transition shrink-0">
-              Perspective 3/4
+              3D View
             </button>
             <button onclick="selectAngle('front')" id="tab-front" class="px-3.5 py-1.5 rounded-xl bg-white/5 text-white/60 hover:text-white border border-transparent transition shrink-0">
-              Front Elevation
+              Front
             </button>
             <button onclick="selectAngle('side')" id="tab-side" class="px-3.5 py-1.5 rounded-xl bg-white/5 text-white/60 hover:text-white border border-transparent transition shrink-0">
-              Side Profile
+              Side
             </button>
             <button onclick="selectAngle('top')" id="tab-top" class="px-3.5 py-1.5 rounded-xl bg-white/5 text-white/60 hover:text-white border border-transparent transition shrink-0">
-              Top Symmetry
+              Top
             </button>
           </div>
 
@@ -380,8 +381,8 @@ HTML_CONTENT = r"""<!DOCTYPE html>
             
             <div id="snapshot-placeholder" class="text-xs text-white/40 italic text-center p-6 space-y-2">
               <div class="text-3xl text-white/20">📷</div>
-              <p class="font-medium text-white/70 font-heading">Awaiting Viewport Snapshot Stream</p>
-              <p class="text-[11px] text-white/40 max-w-xs mx-auto">ForgeArtisan captures 4 canonical angles, detects structural flaws, and autonomously re-iterates until verified perfect.</p>
+              <p class="font-medium text-white/70 font-heading">No photos taken yet</p>
+              <p class="text-[11px] text-white/40 max-w-xs mx-auto">Once the model starts assembling, real-time views from the engine will appear right here.</p>
             </div>
 
             <!-- Precision Camera Telemetry HUD Badge -->
@@ -394,17 +395,17 @@ HTML_CONTENT = r"""<!DOCTYPE html>
         <!-- Technical QA Audit & Closed-Loop Critic Panel -->
         <div class="card-atelier p-5">
           <div class="flex items-center justify-between mb-3">
-            <h2 class="text-xs font-semibold uppercase tracking-wider text-white/90 font-heading">
-              SAM 3.1 Closed-Loop QA Audit
+            <h2 class="text-xs font-semibold text-white/90 font-heading">
+              Visual Quality Review
             </h2>
             <span id="critic-status-badge" class="text-[11px] px-3 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-mono font-medium">
-              Verified Perfect (96.8%)
+              Verified Polished (97%)
             </span>
           </div>
 
           <div id="flaw-panel-content" class="space-y-2 text-xs">
             <div class="p-3.5 bg-white/[0.04] rounded-2xl border border-white/5 text-white/40 italic text-center">
-              Execute a craft run to inspect screenshot defects and automated corrections.
+              Run a build to see what the vision AI spotted and how it refined the shapes.
             </div>
           </div>
         </div>
@@ -412,13 +413,13 @@ HTML_CONTENT = r"""<!DOCTYPE html>
         <!-- Asset Structure Hierarchy Card -->
         <div class="card-atelier p-5 flex-1 flex flex-col">
           <div class="flex items-center justify-between mb-3">
-            <h2 class="text-xs font-semibold uppercase tracking-wider text-white/90 font-heading">
-              Compound Assembly Manifest
+            <h2 class="text-xs font-semibold text-white/90 font-heading">
+              Assembled Parts List
             </h2>
-            <span id="parts-count" class="text-[11px] text-white/50 font-mono">11 components</span>
+            <span id="parts-count" class="text-[11px] text-white/50 font-mono">11 pieces</span>
           </div>
           <div id="manifest-content" class="space-y-2 flex-1 overflow-y-auto pr-1 text-xs">
-            <div class="text-white/40 italic text-center p-3">Submit a prompt to craft.</div>
+            <div class="text-white/40 italic text-center p-3">Submit a prompt to see the list of components created.</div>
           </div>
         </div>
       </div>
