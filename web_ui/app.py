@@ -56,35 +56,42 @@ HTML_CONTENT = r"""<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap');
 
     :root {
-      --bg-base: #111215;
-      --bg-surface: #18191e;
-      --bg-surface-elevated: #202229;
-      --bg-well: #131418;
-      --border-subtle: #272932;
-      --border-hover: #3a3d4a;
+      --bg-base: #0c0d10;
+      --bg-surface: #14151b;
+      --bg-surface-elevated: #1b1d24;
+      --bg-well: #0e0f13;
+      --border-subtle: #232530;
+      --border-hover: #353846;
       --accent-brass: #d97706;
       --accent-brass-hover: #b45309;
       --accent-brass-light: #f59e0b;
       --accent-brass-subtle: rgba(217, 119, 6, 0.12);
-      --text-primary: #f4f4f5;
-      --text-secondary: #a1a1aa;
-      --text-tertiary: #71717a;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-tertiary: #64748b;
       --status-emerald: #10b981;
       --status-coral: #f87171;
     }
 
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background-color: var(--bg-base);
       color: var(--text-primary);
+      letter-spacing: -0.011em;
       -webkit-font-smoothing: antialiased;
     }
 
+    h1, h2, h3, h4, .font-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      letter-spacing: -0.02em;
+    }
+
     .font-mono {
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Fira Code', monospace;
+      letter-spacing: -0.02em;
     }
 
     /* Custom tactile scrollbar */
@@ -96,11 +103,11 @@ HTML_CONTENT = r"""<!DOCTYPE html>
       background: transparent;
     }
     ::-webkit-scrollbar-thumb {
-      background: #2b2e38;
-      border-radius: 3px;
+      background: #232632;
+      border-radius: 4px;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: #3e4250;
+      background: #373b4d;
     }
 
     /* Subtle hairline borders */
@@ -111,30 +118,32 @@ HTML_CONTENT = r"""<!DOCTYPE html>
     .card-atelier {
       background-color: var(--bg-surface);
       border: 1px solid var(--border-subtle);
-      border-radius: 0.875rem;
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.45);
     }
 
     .btn-brass {
       background: linear-gradient(180deg, #d97706 0%, #b45309 100%);
       color: #fff;
       border: 1px solid #f59e0b;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
-      transition: all 0.15s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .btn-brass:hover {
       background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
       border-color: #fbbf24;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 4px 12px rgba(217, 119, 6, 0.25);
+      transform: translateY(-1px);
     }
 
     .btn-secondary {
-      background-color: #202229;
+      background-color: #191b22;
       border: 1px solid var(--border-subtle);
       color: var(--text-secondary);
       transition: all 0.15s ease;
     }
     .btn-secondary:hover {
-      background-color: #282a33;
+      background-color: #21242d;
       border-color: var(--border-hover);
       color: var(--text-primary);
     }
@@ -143,20 +152,20 @@ HTML_CONTENT = r"""<!DOCTYPE html>
 <body class="min-h-screen flex flex-col font-sans overflow-x-hidden selection:bg-amber-900/40 selection:text-amber-200">
   
   <!-- Header: Atelier Studio Top Navigation -->
-  <header class="border-b border-[#252730] bg-[#141519]/95 backdrop-blur-md px-6 py-3 flex items-center justify-between sticky top-0 z-50">
+  <header class="border-b border-[#20222b] bg-[#0f1014]/90 backdrop-blur-xl px-6 py-3.5 flex items-center justify-between sticky top-0 z-50">
     <div class="flex items-center space-x-3.5">
-      <!-- Minimalist Foundry Anvil Mark -->
-      <div class="w-8 h-8 rounded-lg bg-[#22242c] border border-[#343743] flex items-center justify-center text-amber-500 font-bold text-sm shadow-sm">
-        <svg class="w-4 h-4 fill-current text-amber-400" viewBox="0 0 24 24">
+      <!-- Minimalist Foundry Anvil Mark with Warm Ember Flare -->
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-b from-[#222530] to-[#181920] border border-[#353948] flex items-center justify-center text-amber-500 font-bold text-sm shadow-md">
+        <svg class="w-4.5 h-4.5 fill-current text-amber-400" viewBox="0 0 24 24">
           <path d="M4 4h16l-3 6h-3v4h4v3H6v-3h4v-4H7L4 4z"/>
         </svg>
       </div>
       <div>
-        <div class="flex items-center gap-2">
-          <h1 class="text-sm font-semibold tracking-tight text-zinc-100">ForgeArtisan</h1>
-          <span class="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded bg-[#202229] text-amber-300/90 border border-amber-900/40">Studio 2.0</span>
+        <div class="flex items-center gap-2.5">
+          <h1 class="text-base font-bold tracking-tight text-slate-100 font-heading">ForgeArtisan</h1>
+          <span class="text-[10px] font-mono font-medium uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/30">Studio 2.0</span>
         </div>
-        <p class="text-[11px] text-zinc-400">Autonomous 3D Technical Artist & Engine Copilot</p>
+        <p class="text-[11px] text-slate-400 font-normal">Autonomous 3D Technical Artist & Engine Copilot</p>
       </div>
     </div>
     
@@ -228,34 +237,34 @@ HTML_CONTENT = r"""<!DOCTYPE html>
       <div class="lg:col-span-7 space-y-4">
         
         <!-- Prompt & Craft Card -->
-        <div class="card-atelier p-5 shadow-lg space-y-3.5">
+        <div class="card-atelier p-5 space-y-4">
           <div class="flex items-center justify-between">
-            <label class="block text-xs font-semibold uppercase tracking-wider text-zinc-300 font-mono">
+            <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 font-heading">
               3D Craft Directive
             </label>
-            <span id="session-title-indicator" class="text-[11px] text-zinc-400 font-mono">Session: Steam Locomotive</span>
+            <span id="session-title-indicator" class="text-[11px] text-slate-400 font-mono">Session: Steam Locomotive</span>
           </div>
 
           <div class="relative">
-            <textarea id="prompt-input" rows="3" class="w-full bg-[#131418] border border-[#282a33] rounded-xl p-3.5 text-xs text-zinc-100 placeholder-zinc-500 focus:outline-none focus:border-amber-500/60 transition resize-none leading-relaxed font-sans" placeholder="Describe the 3D model, mechanical proportions, and PBR finish... Tip: specify 'in blender' or '.fbx' to target Blender directly."></textarea>
+            <textarea id="prompt-input" rows="3" class="w-full bg-[#0d0e12] border border-[#232632] rounded-xl p-3.5 text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-amber-500/70 focus:ring-1 focus:ring-amber-500/20 transition resize-none leading-relaxed font-sans" placeholder="Describe the 3D model, mechanical proportions, and PBR finish... Tip: specify 'in blender' or '.fbx' to target Blender directly."></textarea>
           </div>
 
           <!-- Dynamic Target Engine Context Indicator -->
-          <div id="target-engine-indicator" class="flex items-center gap-1.5 text-[11px] text-zinc-400 font-mono py-0.5">
-            <span class="text-zinc-500">Target Engine:</span>
+          <div id="target-engine-indicator" class="flex items-center gap-1.5 text-[11px] text-slate-400 font-mono py-0.5">
+            <span class="text-slate-500">Target Engine:</span>
             <span class="text-emerald-400 font-medium">🟢 Unity 6 (test project)</span>
           </div>
 
           <!-- Inspiration Tags & Craft Button -->
           <div class="flex items-center justify-between pt-1">
             <div class="flex gap-1.5 flex-wrap">
-              <button onclick="setPrompt('vintage 4-4-0 American steam locomotive with beveled cab, brass steam bell, and cowcatcher wedge')" class="text-[11px] px-2.5 py-1 rounded-md bg-[#202229] hover:bg-[#282b34] text-zinc-300 border border-[#2b2e38] transition">🚂 4-4-0 Train</button>
-              <button onclick="setPrompt('A military-grade sci-fi power crate with reinforced beveled composite armor plating, recessed rubberized sealing ribs, side grab handles, and an emissive cyan status strip glowing along the front latch.')" class="text-[11px] px-2.5 py-1 rounded-md bg-[#202229] hover:bg-[#282b34] text-zinc-300 border border-[#2b2e38] transition">📦 Sci-Fi Crate</button>
-              <button onclick="setPrompt('heavy industrial railway track switch turnout mechanism with control lever')" class="text-[11px] px-2.5 py-1 rounded-md bg-[#202229] hover:bg-[#282b34] text-zinc-300 border border-[#2b2e38] transition">🛤️ Rail Switch</button>
-              <button onclick="setPrompt('medieval timber and stone blacksmith forge with stone chimney and beveled anvil')" class="text-[11px] px-2.5 py-1 rounded-md bg-[#202229] hover:bg-[#282b34] text-zinc-300 border border-[#2b2e38] transition">🏰 Stone Forge</button>
+              <button onclick="setPrompt('vintage 4-4-0 American steam locomotive with beveled cab, brass steam bell, and cowcatcher wedge')" class="text-[11px] px-2.5 py-1 rounded-lg bg-[#191b22] hover:bg-[#222530] text-slate-300 border border-[#272a36] hover:border-slate-600 transition">🚂 4-4-0 Train</button>
+              <button onclick="setPrompt('A military-grade sci-fi power crate with reinforced beveled composite armor plating, recessed rubberized sealing ribs, side grab handles, and an emissive cyan status strip glowing along the front latch.')" class="text-[11px] px-2.5 py-1 rounded-lg bg-[#191b22] hover:bg-[#222530] text-slate-300 border border-[#272a36] hover:border-slate-600 transition">📦 Sci-Fi Crate</button>
+              <button onclick="setPrompt('heavy industrial railway track switch turnout mechanism with control lever')" class="text-[11px] px-2.5 py-1 rounded-lg bg-[#191b22] hover:bg-[#222530] text-slate-300 border border-[#272a36] hover:border-slate-600 transition">🛤️ Rail Switch</button>
+              <button onclick="setPrompt('medieval timber and stone blacksmith forge with stone chimney and beveled anvil')" class="text-[11px] px-2.5 py-1 rounded-lg bg-[#191b22] hover:bg-[#222530] text-slate-300 border border-[#272a36] hover:border-slate-600 transition">🏰 Stone Forge</button>
             </div>
             
-            <button id="build-btn" onclick="triggerBuild()" class="btn-brass px-5 py-2 rounded-lg text-xs font-semibold flex items-center gap-2">
+            <button id="build-btn" onclick="triggerBuild()" class="btn-brass px-5 py-2.5 rounded-xl text-xs font-bold tracking-wide flex items-center gap-2 font-heading">
               <span>Craft & Re-iterate</span>
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
@@ -265,19 +274,19 @@ HTML_CONTENT = r"""<!DOCTYPE html>
         </div>
 
         <!-- Live Agentic Execution Stream -->
-        <div class="card-atelier p-5 flex flex-col min-h-[460px] shadow-lg">
-          <div class="flex items-center justify-between border-b border-[#252832] pb-3 mb-3">
+        <div class="card-atelier p-5 flex flex-col min-h-[460px]">
+          <div class="flex items-center justify-between border-b border-[#232632] pb-3 mb-3">
             <div class="flex items-center gap-2">
-              <h2 class="text-xs font-semibold uppercase tracking-wider text-zinc-300 font-mono">
+              <h2 class="text-xs font-bold uppercase tracking-wider text-slate-300 font-heading">
                 Agent Execution Pipeline
               </h2>
-              <span id="turn-counter" class="text-[10px] bg-[#22242c] text-zinc-300 px-2 py-0.5 rounded border border-[#2e313c] font-mono">Turn 0</span>
+              <span id="turn-counter" class="text-[10px] bg-[#1a1c24] text-slate-300 px-2.5 py-0.5 rounded-full border border-[#2f3342] font-mono">Turn 0</span>
             </div>
-            <span id="status-tag" class="text-[11px] px-2.5 py-0.5 rounded bg-[#202229] text-zinc-400 font-mono">Idle</span>
+            <span id="status-tag" class="text-[11px] px-2.5 py-0.5 rounded-full bg-[#191b22] text-slate-400 font-mono border border-[#262936]">Idle</span>
           </div>
 
           <div id="timeline" class="space-y-2.5 overflow-y-auto flex-1 pr-1 text-xs">
-            <div class="text-zinc-500 italic p-6 text-center text-xs">
+            <div class="text-slate-500 italic p-6 text-center text-xs">
               Awaiting prompt execution. ForgeArtisan scours blueprints, checks engine state, runs multi-angle screenshot critique, detects flaws, and self-corrects until verified perfect.
             </div>
           </div>
@@ -288,27 +297,27 @@ HTML_CONTENT = r"""<!DOCTYPE html>
       <div class="lg:col-span-5 space-y-4">
         
         <!-- Viewport Snapshot Inspector Card -->
-        <div class="card-atelier p-4 shadow-lg flex flex-col">
+        <div class="card-atelier p-4 flex flex-col">
           <div class="flex items-center justify-between mb-3">
             <div>
-              <h2 class="text-xs font-semibold uppercase tracking-wider text-zinc-300 font-mono">
+              <h2 class="text-xs font-bold uppercase tracking-wider text-slate-300 font-heading">
                 Viewport Snapshot Inspector
               </h2>
-              <p class="text-[11px] text-zinc-400">Multi-angle engine captures with closed-loop flaw detection</p>
+              <p class="text-[11px] text-slate-400">Multi-angle engine captures with closed-loop flaw detection</p>
             </div>
             
-            <button onclick="togglePass()" id="toggle-pass-btn" class="text-[11px] px-2.5 py-1 rounded-md btn-secondary flex items-center gap-1.5" title="Flip between Draft Flaws and Perfected Model">
+            <button onclick="togglePass()" id="toggle-pass-btn" class="text-[11px] px-2.5 py-1 rounded-lg btn-secondary flex items-center gap-1.5" title="Flip between Draft Flaws and Perfected Model">
               <span>⇄</span> <span>Toggle Fix</span>
             </button>
           </div>
 
           <!-- Iteration Pass Segmented Switcher -->
-          <div class="grid grid-cols-2 gap-2 mb-3 bg-[#131418] p-1.5 rounded-xl border border-[#272932] text-xs">
-            <button id="pass1-btn" onclick="selectPass(1)" class="py-1.5 px-2 rounded-lg font-medium text-center transition flex items-center justify-center gap-2 text-zinc-400 hover:text-zinc-200">
+          <div class="grid grid-cols-2 gap-2 mb-3 bg-[#0d0e12] p-1.5 rounded-xl border border-[#232632] text-xs">
+            <button id="pass1-btn" onclick="selectPass(1)" class="py-1.5 px-2 rounded-lg font-medium text-center transition flex items-center justify-center gap-2 text-slate-400 hover:text-slate-200">
               <span class="w-2 h-2 rounded-full bg-rose-400"></span>
               <span>Pass 1: Flaws (71.4%)</span>
             </button>
-            <button id="pass2-btn" onclick="selectPass(2)" class="py-1.5 px-2 rounded-lg font-medium text-center transition flex items-center justify-center gap-2 bg-[#232630] text-emerald-400 border border-[#323644] shadow-sm">
+            <button id="pass2-btn" onclick="selectPass(2)" class="py-1.5 px-2 rounded-lg font-medium text-center transition flex items-center justify-center gap-2 bg-[#1b2721] text-emerald-300 border border-emerald-800/40 shadow-sm">
               <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
               <span>Pass 2: Perfected (96.8%)</span>
             </button>
@@ -316,59 +325,59 @@ HTML_CONTENT = r"""<!DOCTYPE html>
 
           <!-- Canonical Angle Selector Tabs -->
           <div class="flex items-center gap-1.5 mb-3 overflow-x-auto pb-1 text-[11px] font-medium" id="angle-tabs">
-            <button onclick="selectAngle('perspective')" id="tab-perspective" class="px-3 py-1.5 rounded-lg bg-[#2b2e38] text-zinc-100 border border-[#3d414e] shadow-sm transition shrink-0">
+            <button onclick="selectAngle('perspective')" id="tab-perspective" class="px-3 py-1.5 rounded-lg bg-[#252834] text-slate-100 border border-[#383c4d] shadow-sm transition shrink-0">
               Perspective 3/4
             </button>
-            <button onclick="selectAngle('front')" id="tab-front" class="px-3 py-1.5 rounded-lg bg-[#1a1c22] text-zinc-400 hover:text-zinc-200 border border-transparent transition shrink-0">
+            <button onclick="selectAngle('front')" id="tab-front" class="px-3 py-1.5 rounded-lg bg-[#14161c] text-slate-400 hover:text-slate-200 border border-transparent transition shrink-0">
               Front Elevation
             </button>
-            <button onclick="selectAngle('side')" id="tab-side" class="px-3 py-1.5 rounded-lg bg-[#1a1c22] text-zinc-400 hover:text-zinc-200 border border-transparent transition shrink-0">
+            <button onclick="selectAngle('side')" id="tab-side" class="px-3 py-1.5 rounded-lg bg-[#14161c] text-slate-400 hover:text-slate-200 border border-transparent transition shrink-0">
               Side Profile
             </button>
-            <button onclick="selectAngle('top')" id="tab-top" class="px-3 py-1.5 rounded-lg bg-[#1a1c22] text-zinc-400 hover:text-zinc-200 border border-transparent transition shrink-0">
+            <button onclick="selectAngle('top')" id="tab-top" class="px-3 py-1.5 rounded-lg bg-[#14161c] text-slate-400 hover:text-slate-200 border border-transparent transition shrink-0">
               Top Symmetry
             </button>
           </div>
 
           <!-- High-Res Snapshot Viewport Display Box -->
-          <div id="snapshot-container" class="w-full aspect-[4/3] bg-[#121316] rounded-xl border border-[#272932] relative overflow-hidden flex items-center justify-center shadow-inner">
+          <div id="snapshot-container" class="w-full aspect-[4/3] bg-[#0b0c0f] rounded-xl border border-[#232632] relative overflow-hidden flex items-center justify-center shadow-inner">
             <img id="snapshot-image" src="" alt="Viewport Snapshot" class="w-full h-full object-contain hidden" />
             
-            <div id="snapshot-placeholder" class="text-xs text-zinc-500 italic text-center p-6 space-y-2">
-              <div class="text-2xl text-zinc-600">📷</div>
-              <p class="font-medium text-zinc-400">Awaiting Viewport Snapshot Stream</p>
-              <p class="text-[11px] text-zinc-500 max-w-xs mx-auto">ForgeArtisan captures 4 canonical angles, detects structural flaws, and autonomously re-iterates until verified perfect.</p>
+            <div id="snapshot-placeholder" class="text-xs text-slate-500 italic text-center p-6 space-y-2">
+              <div class="text-2xl text-slate-600">📷</div>
+              <p class="font-medium text-slate-300 font-heading">Awaiting Viewport Snapshot Stream</p>
+              <p class="text-[11px] text-slate-500 max-w-xs mx-auto">ForgeArtisan captures 4 canonical angles, detects structural flaws, and autonomously re-iterates until verified perfect.</p>
             </div>
 
             <!-- Precision Camera Telemetry HUD Badge -->
-            <div id="snapshot-badge" class="absolute bottom-2.5 right-2.5 px-2.5 py-1 rounded bg-[#18191e]/90 backdrop-blur border border-[#2f323e] text-[10px] text-zinc-300 font-mono hidden">
+            <div id="snapshot-badge" class="absolute bottom-2.5 right-2.5 px-2.5 py-1 rounded bg-[#14161c]/90 backdrop-blur border border-[#2c303f] text-[10px] text-slate-300 font-mono hidden">
               50MM • CANONICAL ORTHO
             </div>
           </div>
         </div>
 
         <!-- Technical QA Audit & Closed-Loop Critic Panel -->
-        <div class="card-atelier p-4 shadow-lg">
+        <div class="card-atelier p-4">
           <div class="flex items-center justify-between mb-2.5">
-            <h2 class="text-xs font-semibold uppercase tracking-wider text-zinc-300 font-mono">
+            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-300 font-heading">
               SAM 3.1 Closed-Loop QA Audit
             </h2>
-            <span id="critic-status-badge" class="text-[11px] px-2.5 py-0.5 rounded bg-emerald-950/60 text-emerald-400 border border-emerald-800/40 font-mono font-medium">
+            <span id="critic-status-badge" class="text-[11px] px-2.5 py-0.5 rounded-full bg-emerald-950/60 text-emerald-300 border border-emerald-800/40 font-mono font-medium">
               Verified Perfect (96.8%)
             </span>
           </div>
 
           <div id="flaw-panel-content" class="space-y-2 text-xs">
-            <div class="p-3 bg-[#131418] rounded-xl border border-[#252832] text-zinc-500 italic text-center">
+            <div class="p-3 bg-[#0d0e12] rounded-xl border border-[#232632] text-slate-500 italic text-center">
               Execute a craft run to inspect screenshot defects and automated corrections.
             </div>
           </div>
         </div>
 
         <!-- Asset Structure Hierarchy Card -->
-        <div class="card-atelier p-4 shadow-lg flex-1 flex flex-col">
+        <div class="card-atelier p-4 flex-1 flex flex-col">
           <div class="flex items-center justify-between mb-2.5">
-            <h2 class="text-xs font-semibold uppercase tracking-wider text-zinc-300 font-mono">
+            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-300 font-heading">
               Compound Assembly Manifest
             </h2>
             <span id="parts-count" class="text-[11px] text-zinc-400 font-mono">11 components</span>
